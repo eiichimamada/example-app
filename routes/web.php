@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +20,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::middleware(['auth'])->prefix('skill')->group(function() {
+    Route::get('/', [SkillController::class, 'index'])->name('skill');
+});
+
 
 require __DIR__.'/auth.php';
